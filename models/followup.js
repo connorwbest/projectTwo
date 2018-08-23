@@ -1,12 +1,12 @@
 module.exports = function(sequelize, DataTypes) {
     var FollowUp = sequelize.define("Follow_ups", {
-      name: {
-        type: DataTypes.STRING,
+      phone: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-      },
-      business_name: {
-        type: DataTypes.STRING,
-        allowNull: false
+        validate: {
+          len: [10],
+          isNumeric: true
+        }
       },
      follow_status: {
          type: DataTypes.STRING,

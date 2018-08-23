@@ -10,14 +10,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     business_address: {
       type: DataTypes.STRING,
-      allowNull:false,
-    },
-    phone: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        len: [10]
-      }
+      allowNull: true,
     },
     lead_status: {
       type: DataTypes.STRING,
