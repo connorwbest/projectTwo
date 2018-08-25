@@ -1,3 +1,20 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+#loginForm {
+  border: 2px solid grey;
+  border-radius: 10px;
+  position: relative;
+  top: 25vh;
+}
+
+.form-group {
+  padding: 10px;
+}
+
+.btn {
+  margin: 10px;
+}
+
+

@@ -11,9 +11,12 @@ module.exports = function(app) {
   // Create a new example
   app.post("/api/:model/", function(req, res) {
     switch (req.params.model) {
-      case 'customer': dbCreate(db.Customer,req,()=>{});
-      case 'followup': dbCreate(db.Followup,req,()=>{});
-      case 'user': dbCreate(db.User,req,()=>{});
+      case "customer":
+        dbCreate(db.Customer, req, () => {});
+      case "followup":
+        dbCreate(db.Followup, req, () => {});
+      case "user":
+        dbCreate(db.User, req, () => {});
       default:
     }
   });
@@ -21,37 +24,43 @@ module.exports = function(app) {
   // Delete an example by id
   app.delete("/api/:model/:id", function(req, res) {
     switch (req.params.model) {
-      case 'customer': dbDelete(db.Customer,req,()=>{});
-      case 'followup': dbDelete(db.Followup,req,()=>{});
-      case 'user': dbDelete(db.User,req,()=>{});
+      case "customer":
+        dbDelete(db.Customer, req, () => {});
+      case "followup":
+        dbDelete(db.Followup, req, () => {});
+      case "user":
+        dbDelete(db.User, req, () => {});
       default:
     }
   });
-  
-  app.put("/api/:model/:id", function(req,res){
+
+  app.put("/api/:model/:id", function(req, res) {
     switch (req.params.model) {
-      case 'customer': dbUpdate(db.Customer,req,()=>{});
-      case 'followup': dbUpdate(db.Followup,req,()=>{});
-      case 'user': dbUpdate(db.User,req,()=>{});
+      case "customer":
+        dbUpdate(db.Customer, req, () => {});
+      case "followup":
+        dbUpdate(db.Followup, req, () => {});
+      case "user":
+        dbUpdate(db.User, req, () => {});
       default:
     }
-  })
+  });
 };
 
-function dbCreate(dbModel,req,cb){
+function dbCreate(dbModel, req, cb) {
   dbModel.create(req.body).then(function(data) {
     cb(data);
   });
 }
 
-function dbDelete(dbModel,req,cb){
+function dbDelete(dbModel, req, cb) {
   dbModel.destroy({ where: { id: req.params.id } }).then(function(data) {
     cb(data);
   });
 }
 
-function dbUpdate(dbModel,req,cb){
-  dbModel.update({where: {id: req.params.id}}).then(function(data){
+function dbUpdate(dbModel, req, cb) {
+  dbModel.update({ where: { id: req.params.id } }).then(function(data) {
     cb(data);
   });
 }

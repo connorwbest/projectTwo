@@ -1,30 +1,25 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Load index page
-  app.get("/", function(req, res) {
-    db.Login.findAll({}).then(function(credentials) {
-      res.render("index", {
-        Login: credentials
-      });
-    });
-  });
-
-  app.get("/customers", function(req, res) {
-    db.Customer.findAll({}).then(function(customers) {
-      res.render("index", {
+ app.get("/customers", function(req, res) {
+    db.Customers.findAll({}).then(function(customers) {
+      res.render("customers", {
         Customers: customers
       });
     });
   });
 
   app.get("/followup", function(req, res) {
-    db.FollowUp.findAll({}).then(function(cards) {
-      res.render("index", {
+    db.Follow_ups.findAll({}).then(function(cards) {
+      res.render("followups", {
         Cards: cards
       });
     });
   });
+
+  app.get('/reports', function(req, res){
+    res.render('reports');
+  })
 
   /* // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
@@ -40,3 +35,5 @@ module.exports = function(app) {
     res.render("404");
   });
 };
+
+

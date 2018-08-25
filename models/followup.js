@@ -1,5 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
     var FollowUp = sequelize.define("Follow_ups", {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      business_name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       phone: {
         type: DataTypes.INTEGER,
         allowNull: false,
