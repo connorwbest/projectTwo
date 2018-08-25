@@ -22,6 +22,10 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
+//Moment
+var moment = require("moment");
+moment().format();
+
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
