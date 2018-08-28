@@ -1,0 +1,22 @@
+{{> header name="Customers" withButton= true}}
+<div class= "flex"> 
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Customer Name</th>
+        <th>Business Name</th>
+        <th>Customer Phone</th>
+    </tr>
+    {{#each customers}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{customerName}}</td>
+        <td>{{businessName}}</td>
+        <td>{{customerPhone}}</td>
+    </tr>
+    {{/each}}
+</table>
+
+<form id= "addCustomer"> 
+</form>
+</div>

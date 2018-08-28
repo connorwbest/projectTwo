@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var FollowUp = sequelize.define("Follow_ups", {
+    var FollowUp = sequelize.define("FollowUp", {
       phone: {
         type: DataTypes.INTEGER,
         allowNull: false,

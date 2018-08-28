@@ -12,7 +12,7 @@ module.exports = function(app) {
 
   app.get("/customers", function(req, res) {
     db.Customer.findAll({}).then(function(customers) {
-      res.render("index", {
+      res.render("customers", {
         Customers: customers
       });
     });
@@ -20,7 +20,7 @@ module.exports = function(app) {
 
   app.get("/followup", function(req, res) {
     db.FollowUp.findAll({}).then(function(cards) {
-      res.render("index", {
+      res.render("customerFollowUp", {
         Cards: cards
       });
     });

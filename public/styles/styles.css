@@ -1,3 +1,12 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+#addCustomer {
+  width: 50%;
+
+}
+
+.flex {
+  display: flex;
+}

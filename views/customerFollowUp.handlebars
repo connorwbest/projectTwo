@@ -1,0 +1,61 @@
+    <article class="position-relative">
+        <div class="row mx-0">
+            <article class="col-8">
+                <div class="button-row row">
+                    <form class="form-inline">
+                            <select class="form-control mr-1">
+                                <option>Delete</option>
+                                <option>Filter By</option>
+                            </select>
+                            <button class="btn btn-primary mr-1">AUTOSEARCH</button>
+                            <select class="form-control">
+                                <option>Show 25 customers</option>
+                                <option>Show 50 customers</option>
+                            </select>
+                    </form>
+                </div>
+                <div class="table-row row mt-2">
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Customer Name</th>
+                                <th scope="col">Customer Phone Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each data.customers}}
+                            <tr>
+                                <td>{{id}}</td>
+                                <td>{{customerName}}</td>
+                                <td>{{customerPhone}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+            <aside class="col-4">
+                <h3>Add Customer and Follow up</h3>
+                <form class="border rounded p-2">
+                    <div class="form-group row mx-0">
+                        <label for="first-name" class="aside-form-label col-sm-4">First Name</label>
+                        <input id="first-name" name="firstName" type="text" class= "col-sm form-control"> 
+                    </div>
+                    <div class="form-group row mx-0 mt-2">
+                        <label for="last-name" class="aside-form-label col-sm-4">Last Name</label>
+                        <input id="last-name" name="lastName" type="text" class= "col-sm form-control">
+                    </div>
+                    <div class="form-group row mx-0 mt-2">
+                        <label for="contact-type" class="aside-form-label col-sm-5">Contact Type</label>
+                        <select id="contact-type" name="contactType" class= "col-sm form-control">
+                            <option selected>Purchase Rep</option>
+                            <option>Procument</option>
+                        </select>
+                    </div>
+                    
+
+                </form>
+            </aside>
+        </div>
+    </article>
