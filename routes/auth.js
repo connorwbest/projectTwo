@@ -1,40 +1,36 @@
 var db = require("../models");
+var authController = require("../controllers/authcontroller.js");
 
-module.exports = function(app,passport) {
+module.exports = function(app, passport) {
+  app.get("/signup", authController.signup);
+  app.get("/", authController.signin);
+  app.get("/dashboard", isLoggedIn, authController.dashboard);
+  app.get("/logout", authController.logout);
 
-    // there's an error here. function has no name. must have a name because it is not a callback function -- gabe
-    // function (req, res) {
- 
-    //     req.session.destroy(function(err) {
-     
-    //         res.redirect('/');
-     
-    //     });
-     
-    // }
-    // Load index page
-    app.get("/", function(req, res) {
-     db.user.findAll({}).then(function(credentials) {
-       res.render("index", {
-         user: credentials
-       });
-     });
-   });
- 
-   app.get("/signup", function(req,res){
-     res.render("signup");
-   });
 
-   app.get("/dashboard", function(req,res){
-       res.render('example');
-   });
-
-   app.post(
+  
+  app.post(
     "/signup",
     passport.authenticate("local-signup", {
       successRedirect: "/dashboard",
 
       failureRedirect: "/signup"
     })
+ );
+
+  app.post(
+    "/signin",
+    passport.authenticate("local-signin", {
+      successRedirect: "/dashboard",
+
+      failureRedirect: "/"
+    })
   );
- };
+
+  function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) return next();
+
+    res.redirect("/");
+  }
+};
+
