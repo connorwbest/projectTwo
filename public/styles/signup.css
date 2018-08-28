@@ -1,0 +1,30 @@
+#signForm {
+    border: 3px solid #FFD700;
+    border-radius: 10px;
+    position: relative;
+    top: 25vh;
+    z-index: 2;
+    opacity: 0.9;
+    padding: 20px;
+  }
+
+  .form-group {
+    margin: 20px;
+  }
+
+  form {
+    padding: 20px;
+  }
+
+  .btn:hover {
+    color: #FFD700;
+}
+
+body{
+    background-image: 
+    linear-gradient( rgba(0,0,0,.7), rgba(0,0,0,.7) ),
+    url('/images/pexels-photo-886465.jpeg');
+
+    background-size: 100%;
+    
+}

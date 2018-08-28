@@ -1,0 +1,54 @@
+.list-group-item {
+  line-height: 2.5;
+}
+
+#loginForm {
+  border: 3px solid #FFD700;
+  border-radius: 10px;
+  position: relative;
+  top: 25vh;
+  z-index: 2;
+  opacity: 0.9;
+}
+
+.form-group {
+  padding: 10px;
+}
+
+form {
+  padding: 20px;
+}
+
+a {
+    color: #fff;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+.btn:hover {
+    color: #FFD700;
+}
+
+body{
+    background-image: 
+    linear-gradient( rgba(0,0,0,.7), rgba(0,0,0,.7) ),
+    url('/images/pexels-photo-886465.jpeg');
+
+    background-size: 100%;
+    
+}
+
+#title {
+    position: relative;
+    top: 20vh;
+    color: #fff;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 5rem;
+}
+

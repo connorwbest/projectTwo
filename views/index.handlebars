@@ -1,27 +1,37 @@
 <head>
-  <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="/styles/login.css" media="screen" title="no title" charset="utf-8">
   <title>Home Page</title>
 </head>
 
-<div id="home">
+<body>
   <div class="container">
     <div class="row">
-      <div class="col-8 offset-2">
-        <form id="loginForm">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+      <div class="col-sm-12 text-center" id="title">
+        <h1>SALES APP</h1>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-sm-4">
+        <div class="card text-center" id="loginForm">
+          <form id="signin" name="signin" method="post" action="signin">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input class="text" name="email" type="text" />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input name="password" type="password" id="pass" />
+            </div>
+            <input class="btn" type="submit" value="Sign In" />
+            <button class="btn btn-warning">
+              <a href="/signup">Sign up</a>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</body>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
