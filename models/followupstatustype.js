@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
     FollowupStatusType.associate = function(models) {
-        FollowupStatusType.hasMany(models.Followups, {
+        FollowupStatusType.hasMany(models.FollowUp, {
           onDelete: "restrict",
           foreigKey: "statusId"
         });
