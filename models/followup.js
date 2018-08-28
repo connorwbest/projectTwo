@@ -1,32 +1,29 @@
 module.exports = function(sequelize, DataTypes) {
-    var FollowUp = sequelize.define("Follow_ups", {
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      business_name: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      phone: {
+    var FollowUp = sequelize.define("FollowUp", {
+      groupID: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-          len: [10],
-          isNumeric: true
-        }
+        allowNull: false
       },
-     follow_status: {
-         type: DataTypes.STRING,
-         allowNull: false,
-         defaultValue: 'interested'
-     },
+      order: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      open: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+      },
      action: {
          type: DataTypes.STRING,
-         allowNull: false,
-         defaultValue: 'call back'
+         allowNull: false
+     },
+     memo: {
+         type: DataTypes.STRING,
+         allowNull: true
+     },
+     duedate: {
+         type: DataTypes.DATE,
+         allowNull: false
      }
     });
     return FollowUp;
   };
-  

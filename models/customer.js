@@ -1,22 +1,32 @@
 module.exports = function(sequelize, DataTypes) {
   var Customer = sequelize.define("Customer", {
-    name: {
+    firstname: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    business_name: {
+    lastname: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    business_address: {
+    address: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
-    lead_status: {
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
       type: DataTypes.STRING,
       allowNull: false
     }
 
   });
+  Customer.associate = function(models) {
+    Customer.hasMany(models.FollowUp, {
+      onDelete: "restrict"
+    });
+  };
+
   return Customer;
 };
