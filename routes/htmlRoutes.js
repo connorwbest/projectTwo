@@ -1,14 +1,10 @@
 var db = require("../models");
 
 module.exports = function(app) {
- app.get("/customers", function(req, res) {
-    db.Customers.findAll({}).then(function(customers) {
-      res.render("customers", {
-        Customers: customers
-      });
-    });
-  });
-
+  app.get("/customers", function(req, res) {
+       res.render("customers");
+   });
+ 
   app.get("/followup", function(req, res) {
     db.Follow_ups.findAll({}).then(function(cards) {
       res.render("followups", {
