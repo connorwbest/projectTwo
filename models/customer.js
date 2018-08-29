@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
   var Customer = sequelize.define("Customer", {
     firstname: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     lastname: {
       type: DataTypes.STRING,
@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     address: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     phone: {
       type: DataTypes.STRING,
@@ -20,7 +20,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     }
-
   });
   Customer.associate = function(models) {
     Customer.hasMany(models.FollowUp, {

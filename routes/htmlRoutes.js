@@ -1,12 +1,8 @@
 var db = require("../models");
 
 module.exports = function(app) {
- app.get("/customers", function(req, res) {
-    db.Customers.findAll({}).then(function(customers) {
-      res.render("customers", {
-        Customers: customers
-      });
-    });
+  app.get("/customers", function(req, res) {
+    res.render("customers");
   });
 
   app.get("/followup", function(req, res) {
@@ -17,9 +13,9 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/reports', function(req, res){
-    res.render('reports');
-  })
+  app.get("/reports", function(req, res) {
+    res.render("reports");
+  });
 
   /* // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
@@ -35,5 +31,3 @@ module.exports = function(app) {
     res.render("404");
   });
 };
-
-
