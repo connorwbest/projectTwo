@@ -13,9 +13,9 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/reports', function(req, res){
-    res.render('reports');
-  })
+  app.get("/reports", function(req, res) {
+    res.render("reports");
+  });
 
   /* // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
@@ -31,5 +31,3 @@ module.exports = function(app) {
     res.render("404");
   });
 };
-
-
