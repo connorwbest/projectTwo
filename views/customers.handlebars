@@ -83,12 +83,17 @@
                         <option>Show 50 customers</option>
                     </select>
                 </form>
-                <div id="customerTable"></div>
+                <div id="customerTable">
+                    {{!-- Tabulator Table goes here --}}
+                </div>
             </div>
             <div id="customerForm" class="col-6"></div>
         </div>
     </div>
-
+    <script>
+        ///script for creating tabulator goes here
+        /// $("#customerTable").tabulator({columns:[{},{},{}]);
+    </script>
     <script>
         $(document).ready(function () {
             $("#customerForm").alpaca({
