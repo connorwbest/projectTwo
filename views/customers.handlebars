@@ -24,93 +24,147 @@
         rel="stylesheet">
     <!-- Required for inputmask -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+
+
+    <!-- Beautify (used by EditorField) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.7.5/beautify.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.7.5/beautify-css.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.7.5/beautify-html.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- typeahead.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.2.1/bloodhound.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.2.1/typeahead.bundle.min.js" type="text/javascript"></script>
+
+
+    <!-- ckeditor (for the ckeditor field) -->
+    <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js" type="text/javascript"></script>
+
+
+    <!-- bootstrap datetimepicker for date, time and datetime controls -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css"
+    />
+
+    <!-- bootstrap-multiselect for time field -->
+    {{!-- <script src="/lib/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" media="screen" href="/lib/bootstrap-multiselect/css/bootstrap-multiselect.css" /> --}}
+
+    <!-- jQuery Price Format for currency field -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-price-format/2.2.0/jquery.priceformat.min.js"></script>
+
+    <!-- START - Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-74723052-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    <!-- END - Google Analytics -->
+
+    <!-- pretty print -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.css" />
 </head>
+
 <body>
-    <div class="flex">
-        <div id="customerTable"></div>
+    <div class="container">
+        <div class="row">
+            <div class="flex col-6">
+                <form class="form-inline">
+                    <select id="customerFilter" class="form-control">
+                        <option>Show 25 customers</option>
+                        <option>Show 50 customers</option>
+                    </select>
+                </form>
+                <div id="customerTable">
+                    {{!-- Tabulator Table goes here --}}
+                </div>
+            </div>
+            <div id="customerForm" class="col-6"></div>
+        </div>
     </div>
-
-    <form class="form-inline">
-        <select id="customerFilter" class="form-control">
-            <option>Show 25 customers</option>
-            <option>Show 50 customers</option>
-        </select>
-    </form>
+    <script>
+        ///script for creating tabulator goes here
+        /// $("#customerTable").tabulator({columns:[{},{},{}]);
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#customerForm").alpaca({
+                "schema": {
+                    "title": "New Customer",
+                    "description": "What do you think about Alpaca?",
+                    "type": "object",
+                    "properties": {
+                        "firstname": {
+                            "type": "string",
+                            "required": true,
+                            "title": "Firstname",
+                            "minLength": 2
+                        },
+                        "lastname": {
+                            "type": "string",
+                            "title": "Lastname",
+                            "required": true,
+                            "minLength": 2
+                        },
+                        "address": {
+                            "type": "string",
+                            "title": "Address",
+                            "required": true
+                        },
+                        "phone": {
+                            "type": "string",
+                            "title": "Phone",
+                            "format": "phone",
+                            "required": true
+                        },
+                        "email": {
+                            "type": "string",
+                            "title": "Email",
+                            "format": "email",
+                            "required": true
+                        },
+                    }
+                },
+                "options": {
+                    "form": {
+                        "buttons": {
+                            "submit": {
+                                "type": 'button',
+                                "click": function () {
+                                    $.post("/api/customer", this.getValue(), function (data) {
+                                        console.log('post route being called to create new customer');
+                                        ///// insert returned created new customer record to customer table tabulator
+                                    });
+                                }
+                            }
+                        }
+                    },
+                    "fields": {
+                        "firstname": {
+                            "size": 20
+                        },
+                        "lastname": {
+                            "size": 20
+                        },
+                        "address": {
+                            "size": 20
+                        },
+                        "phone": {
+                            "size": 20,
+                            "maskString": "(999)-999-9999"
+                        }
+                    }
+                },
+                "view": "bootstrap-edit"
+            });
+        });
+    </script>
 </body>
-
-
-<div id="customerForm"></div>
-<script>
-$(document).ready(function () {
-    console.log("sanity");
-    $("#customerForm").alpaca({
-        "data": {
-            "tel": ""
-        },
-        "schema": {
-            "title": "New Customer",
-            "description": "What do you think about Alpaca?",
-            "type": "object",
-            "properties": {
-                "firstname": {
-                    "type": "string",
-                    "required": true,
-                    "title": "Firstname",
-                    "minLength": 2
-                },
-                "lastname": {
-                    "type": "string",
-                    "title": "Lastname",
-                    "required": true,
-                    "minLength": 2
-                },
-                "address": {
-                    "type": "string",
-                    "title": "Address",
-                    "required": true
-                },
-                "phone": {
-                    "type": "string",
-                    "title": "Phone",
-                    "format": "phone",
-                    "required": true
-                },
-                "email": {
-                    "type": "string",
-                    "title": "Email",
-                    "format": "email",
-                    "required": true
-                },
-            }
-        },
-        "options": {
-            "form": {
-                "attributes": {
-                    "action": "/api/customer",
-                    "method": "post"
-                },
-                "buttons": {
-                    "submit": {}
-                }
-            },
-            "fields": {
-                "firstname": {
-                    "size": 20
-                },
-                "lastname": {
-                    "size": 20
-                },
-                "address": {
-                    "size": 20
-                },
-                "tel": {
-                    "size": 20,
-                    "maskString": "(999)-999-9999"
-                }
-             }
-        },
-        "view": "bootstrap-edit"
-    });
-});
-</script>
-
