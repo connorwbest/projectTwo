@@ -2,9 +2,9 @@ var db = require("../models");
 
 module.exports = function(app) {
   app.get("/customers", function(req, res) {
-    res.render("customers");
-  });
-
+       res.render("customers");
+   });
+ 
   app.get("/followup", function(req, res) {
     db.Follow_ups.findAll({}).then(function(cards) {
       res.render("followups", {

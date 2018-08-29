@@ -1,82 +1,116 @@
-{{> header name="Customers" withButton= true}}
-<div class="flex">
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Customer Name</th>
-            <th>Business Name</th>
-            <th>Customer Phone</th>
-        </tr>
-        {{#each customers}}
-        <tr>
-            <td>{{id}}</td>
-            <td>{{customerName}}</td>
-            <td>{{businessName}}</td>
-            <td>{{customerPhone}}</td>
-        </tr>
-        {{/each}}
-    </table>
-    <form id="addCustomer">
-    </form>
-</div>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link type="text/css" href="http://code.cloudcms.com/alpaca/1.5.24/bootstrap/alpaca.min.css" rel="stylesheet">
 
-<article class="position-relative">
-    <div class="row mx-0">
-        <article class="col-8">
-            <div class="button-row row">
-                <form class="form-inline">
-                    <select class="form-control mr-1">
-                        <option>Delete</option>
-                        <option>Filter By</option>
-                    </select>
-                    <button class="btn btn-primary mr-1">AUTOSEARCH</button>
-                    <select class="form-control">
-                        <option>Show 25 customers</option>
-                        <option>Show 50 customers</option>
-                    </select>
-                </form>
-            </div>
-            <div class="table-row row mt-2">
-                <table class="table table-bordered">
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Customer Name</th>
-                            <th scope="col">Customer Phone Number</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each data.customers}}
-                        <tr>
-                            <td>{{id}}</td>
-                            <td>{{customerName}}</td>
-                            <td>{{customerPhone}}</td>
-                        </tr>
-                        {{/each}}
-                    </tbody>
-                </table>
-            </div>
-        </article>
-        <aside class="col-4">
-            <h3>Add Customer and Follow up</h3>
-            <form class="border rounded p-2">
-                <div class="form-group row mx-0">
-                    <label for="first-name" class="aside-form-label col-sm-4">First Name</label>
-                    <input id="first-name" name="firstName" type="text" class="col-sm form-control">
-                </div>
-                <div class="form-group row mx-0 mt-2">
-                    <label for="last-name" class="aside-form-label col-sm-4">Last Name</label>
-                    <input id="last-name" name="lastName" type="text" class="col-sm form-control">
-                </div>
-                <div class="form-group row mx-0 mt-2">
-                    <label for="contact-type" class="aside-form-label col-sm-5">Contact Type</label>
-                    <select id="contact-type" name="contactType" class="col-sm form-control">
-                        <option selected>Purchase Rep</option>
-                        <option>Procument</option>
-                    </select>
-                </div>
-
-            </form>
-        </aside>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+    <!-- moment -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <!-- bootstrap -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <!-- handlebars -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+    <!-- alpaca -->
+    <script type="text/javascript" src="https://code.cloudcms.com/alpaca/1.5.24/bootstrap/alpaca.min.js"></script>
+    <!-- jquery ui -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <!-- Required for jQuery UI DateTimePicker control -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
+    <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css"
+        rel="stylesheet">
+    <!-- Required for inputmask -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+</head>
+<body>
+    <div class="flex">
+        <div id="customerTable"></div>
     </div>
-</article>
+
+    <form class="form-inline">
+        <select id="customerFilter" class="form-control">
+            <option>Show 25 customers</option>
+            <option>Show 50 customers</option>
+        </select>
+    </form>
+</body>
+
+
+<div id="customerForm"></div>
+<script>
+$(document).ready(function () {
+    console.log("sanity");
+    $("#customerForm").alpaca({
+        "data": {
+            "tel": ""
+        },
+        "schema": {
+            "title": "New Customer",
+            "description": "What do you think about Alpaca?",
+            "type": "object",
+            "properties": {
+                "firstname": {
+                    "type": "string",
+                    "required": true,
+                    "title": "Firstname",
+                    "minLength": 2
+                },
+                "lastname": {
+                    "type": "string",
+                    "title": "Lastname",
+                    "required": true,
+                    "minLength": 2
+                },
+                "address": {
+                    "type": "string",
+                    "title": "Address",
+                    "required": true
+                },
+                "phone": {
+                    "type": "string",
+                    "title": "Phone",
+                    "format": "phone",
+                    "required": true
+                },
+                "email": {
+                    "type": "string",
+                    "title": "Email",
+                    "format": "email",
+                    "required": true
+                },
+            }
+        },
+        "options": {
+            "form": {
+                "attributes": {
+                    "action": "/api/customer",
+                    "method": "post"
+                },
+                "buttons": {
+                    "submit": {}
+                }
+            },
+            "fields": {
+                "firstname": {
+                    "size": 20
+                },
+                "lastname": {
+                    "size": 20
+                },
+                "address": {
+                    "size": 20
+                },
+                "tel": {
+                    "size": 20,
+                    "maskString": "(999)-999-9999"
+                }
+             }
+        },
+        "view": "bootstrap-edit"
+    });
+});
+</script>
+
