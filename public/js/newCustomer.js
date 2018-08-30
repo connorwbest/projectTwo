@@ -1,23 +1,22 @@
-$(document).ready(function () {
-  console.log('sanity')
-  $('#addCustomer').alpaca({
+$(document).ready(function() {
+  $("#addCustomer").alpaca({
     data: {
-      tel: ''
+      tel: ""
     },
     schema: {
-      title: 'New Customer',
-      description: 'What do you think about Alpaca?',
-      type: 'object',
+      title: "New Customer",
+      description: "What do you think about Alpaca?",
+      type: "object",
       properties: {
         firstname: {
-          type: 'string',
+          type: "string",
           required: true,
-          title: 'Firstname',
+          title: "Firstname",
           minLength: 2
         },
         lastname: {
-          type: 'string',
-          title: 'Lastname',
+          type: "string",
+          title: "Lastname",
           required: true
         },
         businessName: {
@@ -57,7 +56,16 @@ $(document).ready(function () {
           method: "post"
         },
         buttons: {
-          submit: {}
+          submit: {
+            click: function() {
+              console.log(
+                $("#addCustomer")
+                  .alpaca("get")
+                  .childrenByPropertyId["address"].getValue()
+              );
+              console.log("post route being called to create new customer");
+            }
+          }
         }
       },
       fields: {
@@ -70,7 +78,7 @@ $(document).ready(function () {
         address: {
           size: 20
         },
-        tel: {
+        phone: {
           size: 20,
           maskString: "(999)-999-9999"
         }
