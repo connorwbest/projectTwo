@@ -66,11 +66,13 @@ module.exports = function(app) {
   app.post("/api/:model/", function(req, res) {
     switch (req.params.model) {
       case "customer":
-        db.Customer.create(req.body);
+        db.Customer.create(req.body).then(function(data){
+          res.json(data);
+        });
       case "followup":
-        db.FollowUp.create(req.body);
-      case "user":
-        db.User.create(req.body);
+        db.FollowUp.create(req.body).then(function(data){
+          res.json(data);
+        });
       default:
     }
   });
@@ -82,8 +84,6 @@ module.exports = function(app) {
         db.Customer.update({ where: { id: req.params.id } });
       case "followup":
         db.FollowUp.update({ where: { id: req.params.id } });
-      case "user":
-        db.User.update({ where: { id: req.params.id } });
       default:
     }
   });
