@@ -88,3 +88,9 @@ module.exports = function(app) {
     }
   });
 };
+
+/* app.post("/api/customer", function(req, res) {
+  db.Customer.create(req.body).then(function(data) {
+    res.json(data);
+  });
+}); */
