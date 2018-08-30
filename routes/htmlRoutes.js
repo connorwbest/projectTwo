@@ -1,17 +1,15 @@
 var db = require("../models");
+var path = require("path");
 
 module.exports = function(app) {
   app.get("/customers", function(req, res) {
        res.render("customers");
    });
  
-  app.get("/followup", function(req, res) {
-    db.Follow_ups.findAll({}).then(function(cards) {
-      res.render("followups", {
-        Cards: cards
-      });
-    });
-  });
+   //GET route for getting of follow-up of today
+   app.get("/followup", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/followup.html"));
+});
 
   app.get("/reports", function(req, res) {
     res.render("reports");
