@@ -64,18 +64,32 @@
 
 <body>
     <div class="container">
+        <nav class="navbar nabar-dark bg-dark">
+            <span class="navbar-brand mb-0 text-white"><strong>SALE REMINDER</strong></span>
+            <div class="navbar float-right">
+                <a class="nav-ulnk  text-white" href="#">TASK</a>
+                <a class="nav-link  text-white" href="../view/customer.html">CUSTOMER</a>
+            </div>
+        </nav>
+        <div class="row mt-2">
+            <div class="flex col-12">
+                <div class="card text-dark bg-warning mb-3 new_card">
+                    <form id="customerForm" class="col-12"></form>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
-            <div class="flex col-6">
-                <form class="form-inline">
+            <div class="flex col-12">
+                <form class="form-inline float-right mt-3">
                     <select id="customerFilter" class="form-control">
                         <option>Show 25 customers</option>
                         <option>Show 50 customers</option>
                     </select>
-                </form>
+                </form><br><br><br>
                 <div id="customerTable">
                 </div>
             </div>
-            <form id="customerForm" class="col-6"></form>
         </div>
     </div>
     <script>
@@ -116,6 +130,19 @@
                         }
                     }
                 },
+                "view": {
+                    "parent": "bootstrap-edit",
+                    "layout": {
+                        "template": './form-layout-template.html',
+                        "bindings": {
+                            "firstName": "#left",
+                            "lastName": "#right",
+                            "phone" : "#left",
+                            "email": "#right",
+                            "address": "#left"
+                        }
+                    }
+                },
                 "options": {
                     "form": {
                         "attributes": {
@@ -143,14 +170,16 @@
                 height: "311px",
                 layout: "fitColumns",
                 columns: [
-                    { title: "Firstname", field: "firstname" },
-                    { title: "Lastname", field: "lastname" },
-                    { title: "Group ID", field: "groupID" },
+                    { title: "Name", field: "name" },
+                    { title: "Phone", field: "phone"},
+                    { title: "Email", field: "email"},
+                    { title: "Address", field: "Address"}
+                    /*  { title: "Group ID", field: "groupID" },
                     { title: "Order", field: "order" },
-                    { title: "Followup Open", field: "followupopen" },
+                  { title: "Followup Open", field: "followupopen" },
                     { title: "Followup Status", field: "followupstatus" },
                     { title: "Followup Action", field: "followupaction" },
-                    { title: "Due Date", field: "duedate" }
+                    { title: "Due Date", field: "duedate" }*/
                 ],
 
                 cellEdited: function (cell) {

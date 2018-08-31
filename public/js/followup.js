@@ -100,8 +100,8 @@ $(document).ready(function() {
   //Displaying a message when there are no follow up for today
   function displayEmpty() {
       cardsContainer.empty();
-      var message = $("<h2>");
-      message.html("There are no follow-up today");
+      var message = $("<h2>There are no follow-up today</h2>");
+    //   message.html("There are no follow-up today");
       cardsContainer.append(message);
   };
 
@@ -131,5 +131,8 @@ $(document).ready(function() {
       .parent()
       .data("folUp");
   };
+
+  //Function to 
+
 
 });

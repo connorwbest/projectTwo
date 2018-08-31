@@ -98,7 +98,7 @@ module.exports = function(app) {
     var d = new Date();
     var curDate = moment(d).format("MMM Do YY");
 
-    db.folUpM.findAll({
+    db.FollowUp.findAll({
         where: {
             duedate: curDate,
             open: true
