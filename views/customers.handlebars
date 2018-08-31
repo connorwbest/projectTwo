@@ -39,7 +39,7 @@
     <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
     <!-- bootstrap-multiselect for time field -->
 
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
     <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css">
 
@@ -79,235 +79,183 @@
             </div>
 
             <div class="flex col-6">
-              <div class="card text-dark bg-warning mb-3 new_card">
+                <div class="card text-dark bg-warning mb-3 new_card">
 
-                <div class="row">
-                    <div class="col-12">
-                    <form class="form-inline float-right mt-2">
-                        <select id="customerFilter" class="form-control">
-                            <option>Show 25 customers</option>
-                            <option>Show 50 customers</option>
-                        </select>
-                    </form>
-                </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-12">
-                        <div id="customerTable">
+                    <div class="row">
+                        <div class="col-12">
+                            <form class="form-inline float-right mt-2">
+                                <select id="customerFilter" class="form-control">
+                                    <option value="1">Show 5 customers</option>
+                                    <option value="2">Show 10 customers</option>
+                                    <option value="3">Show All Customers</option>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <div id="customerTable"></div>
                         </div>
                     </div>
                 </div>
-              </div>
             </div>
-    </div>
+        </div>
 
-    <script>
+        <script>
 
-        $(document).ready(function () {
-            $("#customerForm").alpaca({
-                "schema": {
-                    "title": "New Customer",
-                    "type": "object",
-                    "properties": {
-                        "firstname": {
-                            "type": "string",
-                            "title": "Firstname",
-                            "minLength": 2
-                        },
-                        "lastname": {
-                            "type": "string",
-                            "title": "Lastname",
-                            "minLength": 2
-                        },
-                        "address": {
-                            "type": "string",
-                            "title": "Address",
-                        },
-                        "phone": {
-                            "type": "string",
-                            "title": "Phone",
-                            "format": "phone",
-                        },
-                        "email": {
-                            "type": "string",
-                            "title": "Email",
-                            "format": "email",
-                        }
-                    }
-                },
-                "options": {
-                    "form": {
-                        "attributes": {
-                             "action": "/api/customer",
-                             "method": "post"
-                        },
-                        "fields": {
-                          "firstname": {
-                            "validator": function(callback) {
-                                var value = this.getValue();
-                                if (value = "") {
-                                    callback({
-                                        "status": false,
-                                        "message": "Please enter Firstname"
-                                    });
-                                } else {
-                                    callback({
-                                        "status": true
-                                    });
-                                }
-                            }
-                          },
-                          "lastname": {
-                            "validator": function(callback) {
-                                var value = this.getValue();
-                                if (value = "") {
-                                    callback({
-                                        "status": false,
-                                        "message": "Please enter Lastname"
-                                    });
-                                } else {
-                                    callback({
-                                        "status": true
-                                    });
-                                }
-                            }
-                          },
-                          "phone": {
-                            "validator": function(callback) {
-                                var value = this.getValue();
-                                if (value = "") {
-                                    callback({
-                                        "status": false,
-                                        "message": "Please enter Firstname"
-                                    });
-                                } else {
-                                    callback({
-                                        "status": true
-                                    });
-                                }
-                            }
-                          }
-                        },
-                            
-                        "buttons": {
-                            "submit": {
-                                "type": "button",
-                                "click": function () {
-                                    console.log(this.getValue());
-                                    $.post('/api/customer',this.getValue(),function(data){
-                                        console.log(data);
-                                    })
-                                }
-                            }
-                        }
-                    }
-                },
-                "view": "bootstrap-edit"
-            });
-
-            ///script for creating tabulator goes here
             $(document).ready(function () {
-            $("#customerForm").alpaca({
-                "schema": {
-                    "title": "New Customer",
-                    "type": "object",
-                    "properties": {
-                        "firstname": {
-                            "type": "string",
-                            "required": true,
-                            "title": "Firstname",
-                            "minLength": 2
-                        },
-                        "lastname": {
-                            "type": "string",
-                            "title": "Lastname",
-                            "required": true,
-                            "minLength": 2
-                        },
-                        "address": {
-                            "type": "string",
-                            "title": "Address",
-                            "required": true
-                        },
-                        "phone": {
-                            "type": "string",
-                            "title": "Phone",
-                            "format": "phone",
-                            "required": true
-                        },
-                        "email": {
-                            "type": "string",
-                            "title": "Email",
-                            "format": "email",
-                            "required": true
+                $("#customerForm").alpaca({
+                    "schema": {
+                        "title": "New Customer",
+                        "type": "object",
+                        "properties": {
+                            "firstname": {
+                                "type": "string",
+                                "title": "Firstname",
+                                "minLength": 2
+                            },
+                            "lastname": {
+                                "type": "string",
+                                "title": "Lastname",
+                                "minLength": 2
+                            },
+                            "address": {
+                                "type": "string",
+                                "title": "Address",
+                            },
+                            "phone": {
+                                "type": "string",
+                                "title": "Phone",
+                                "format": "phone",
+                            },
+                            "email": {
+                                "type": "string",
+                                "title": "Email",
+                                "format": "email",
+                            }
                         }
-                    }
-                },
-                "options": {
-                    "form": {
-                        "attributes": {
-                            "action": "/api/customer",
-                            "method": "post"
-                        },
-                        "buttons": {
-                            "submit": {
-                                "type": "button",
-                                "click": function () {
-                                    console.log(this.getValue());
-                                    $.post('/api/customer', this.getValue(), function (data) {
-                                        console.log(data);
-                                    })
+                    },
+                    "options": {
+                        "form": {
+                            "attributes": {
+                                "action": "/api/customer",
+                                "method": "post"
+                            },
+                            "fields": {
+                                "firstname": {
+                                    "validator": function (callback) {
+                                        var value = this.getValue();
+                                        if (value = "") {
+                                            callback({
+                                                "status": false,
+                                                "message": "Please enter Firstname"
+                                            });
+                                        } else {
+                                            callback({
+                                                "status": true
+                                            });
+                                        }
+                                    }
+                                },
+                                "lastname": {
+                                    "validator": function (callback) {
+                                        var value = this.getValue();
+                                        if (value = "") {
+                                            callback({
+                                                "status": false,
+                                                "message": "Please enter Lastname"
+                                            });
+                                        } else {
+                                            callback({
+                                                "status": true
+                                            });
+                                        }
+                                    }
+                                },
+                                "phone": {
+                                    "validator": function (callback) {
+                                        var value = this.getValue();
+                                        if (value = "") {
+                                            callback({
+                                                "status": false,
+                                                "message": "Please enter Firstname"
+                                            });
+                                        } else {
+                                            callback({
+                                                "status": true
+                                            });
+                                        }
+                                    }
+                                }
+                            },
+
+                            "buttons": {
+                                "submit": {
+                                    "type": "button",
+                                    "click": function () {
+                                        console.log(this.getValue());
+                                        $.post('/api/customer', this.getValue(), function (data) {
+                                            $("#customerTable").tabulator("addRow", data, true, 0);
+                                            console.log(data);
+                                            $("#customerForm").alpaca("get").childrenByPropertyId["firstname"].setValue("");
+                                            $("#customerForm").alpaca("get").childrenByPropertyId["lastname"].setValue("");
+                                            $("#customerForm").alpaca("get").childrenByPropertyId["phone"].setValue("");
+                                            $("#customerForm").alpaca("get").childrenByPropertyId["address"].setValue("");
+                                            $("#customerForm").alpaca("get").childrenByPropertyId["email"].setValue("");
+                                        });
+                                    }
                                 }
                             }
                         }
-                    }
-                },
-                "view": "bootstrap-edit"
+                    },
+                    "view": "bootstrap-edit"
+                });
+
+
+                ///script for creating tabulator goes here
+                $("#customerTable").tabulator({
+                    height: "311px",
+                    layout: "fitDataFill",
+                    columns: [
+                        { title: "ID", field: "id", editor: "input", visible: false },
+                        { title: "Firstname", field: "firstname", editor: "input" },
+                        { title: "Lastname", field: "lastname", editor: "input" },
+                        { title: "Phone", field: "phone", editor: "input" },
+                        { title: "Email", field: "email", editor: "input" },
+                        { title: "Address", field: "address" }
+                    ],
+                    cellEdited: function (cell) {
+                        //This callback is called any time a cell is edidted
+                        console.log(Object.keys(cell.cell));
+                        console.log(cell.cell);
+                        console.log("Customer ID of the edited row" + cell.cell.row.data.id);
+                        console.log("Column being edited " + cell.cell.column.field)
+                        console.log("Old Value: " + cell.cell.oldValue);
+                        console.log("New Value: " + cell.cell.value);
+
+                        // call http action and method here 
+                        $.ajax({
+                            method: 'PUT',
+                            data: JSON.stringify({
+                                columnName: cell.cell.column.field,
+                                columnValue: cell.cell.value
+                            }),
+                            url: "".concat("/api/customer?id=", cell.cell.row.data.id),
+                            contentType: "application/json; charset=utf-8"
+                        })
+
+                    },
+                    ajaxURL: "/api/customers", //ajax URL
+                    ajaxConfig: "GET", //ajax HTTP request type
+                });
+                ///$("#customerTable").tabulator("addRow", {});
+                //// $("#customerTable").tabulator("addRow", {});
+                //// $("#customerTable").tabulator("addRow", {});
+                $("#customerTable").tabulator("setData", "/api/customers?id=1");
             });
+            $("#customerForm").reset();
 
-            ///script for creating tabulator goes here
-            $("#customerTable").tabulator({
-                height: "311px",
-                layout: "fitColumns",
-                columns: [
-                    { title: "ID", field: "id", editor: "input", visible: false },
-                    { title: "Firstname", field: "firstname", editor: "input" },
-                    { title: "Lastname", field: "lastname", editor: "input" },
-                    { title: "Address", field: "address" },
-                    { title: "Phone", field: "phone", editor: "input" },
-                    { title: "Email", field: "email", editor: "input" }
-                ],
-                cellEdited: function (cell) {
-                    //This callback is called any time a cell is edidted
-                    console.log(Object.keys(cell.cell));
-                    console.log(cell.cell);
-                    console.log("Customer ID of the edited row" + cell.cell.row.data.id);
-                    console.log("Column being edited " + cell.cell.column.field)
-                    console.log("Old Value: " + cell.cell.oldValue);
-                    console.log("New Value: " + cell.cell.value);
-
-                    // call http action and method here 
-                    $.ajax({
-                        method: 'PUT',
-                        data: JSON.stringify({
-                            columnName: cell.cell.column.field,
-                            columnValue: cell.cell.value
-                        }),
-                        url: "".concat("/api/customer?id=", cell.cell.row.data.id),
-                        contentType: "application/json; charset=utf-8"
-                    });
-                },
-                ajaxURL: "/api/customers", //ajax URL
-                ajaxConfig: "GET", //ajax HTTP request type
-            });
-            ///$("#customerTable").tabulator("addRow", {});
-            //// $("#customerTable").tabulator("addRow", {});
-            //// $("#customerTable").tabulator("addRow", {});
-            $("#customerTable").tabulator("setData", "/api/customers?id=1");
-        });
-
-
-    </script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.5.3/css/tabulator.min.css" rel="stylesheet">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.5.3/js/tabulator.min.js"></script>
+        </script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.5.3/css/tabulator.min.css" rel="stylesheet">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.5.3/js/tabulator.min.js"></script>
 </body>

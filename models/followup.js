@@ -1,20 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
   var FollowUp = sequelize.define("FollowUp", {
-    groupID: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    order: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     open: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: false,
+      defaultValue: true
     },
     action: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     memo: {
       type: DataTypes.STRING,
@@ -22,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     duedate: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     }
   });
   return FollowUp;
