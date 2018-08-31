@@ -62,6 +62,21 @@ module.exports = function(app) {
     ///assigned to phung
   });
   
+  app.get("/api/customers", function(req, res) {
+    switch (req.query.id) {
+      case "1":
+        db.sequelize
+          .query("SELECT * FROM `All Added Customers`", {
+            type: db.sequelize.QueryTypes.SELECT
+          })
+          .then(function(data) {
+            res.json(data);
+          });
+      case "2":
+      default:
+    }
+  });
+  
   ///example URL /api/customer
   app.post("/api/:model/", function(req, res) {
     switch (req.params.model) {
@@ -77,11 +92,14 @@ module.exports = function(app) {
     }
   });
 
-  ///example URL /api/customer?id=1
-  app.put("/api/:model/:id", function(req, res) {
+   ///example URL /api/customer?id=1
+  app.put("/api/:model", function(req, res) {
     switch (req.params.model) {
       case "customer":
-        db.Customer.update({ where: { id: req.params.id } });
+        db.Customer.update(
+          { [req.body.columnName]: req.body.columnValue },
+          { where: { id: req.query.id } }
+        );
       case "followup":
         db.FollowUp.update({ where: { id: req.params.id } });
       default:

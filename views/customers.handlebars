@@ -206,32 +206,104 @@
             });
 
             ///script for creating tabulator goes here
+            $(document).ready(function () {
+            $("#customerForm").alpaca({
+                "schema": {
+                    "title": "New Customer",
+                    "type": "object",
+                    "properties": {
+                        "firstname": {
+                            "type": "string",
+                            "required": true,
+                            "title": "Firstname",
+                            "minLength": 2
+                        },
+                        "lastname": {
+                            "type": "string",
+                            "title": "Lastname",
+                            "required": true,
+                            "minLength": 2
+                        },
+                        "address": {
+                            "type": "string",
+                            "title": "Address",
+                            "required": true
+                        },
+                        "phone": {
+                            "type": "string",
+                            "title": "Phone",
+                            "format": "phone",
+                            "required": true
+                        },
+                        "email": {
+                            "type": "string",
+                            "title": "Email",
+                            "format": "email",
+                            "required": true
+                        }
+                    }
+                },
+                "options": {
+                    "form": {
+                        "attributes": {
+                            "action": "/api/customer",
+                            "method": "post"
+                        },
+                        "buttons": {
+                            "submit": {
+                                "type": "button",
+                                "click": function () {
+                                    console.log(this.getValue());
+                                    $.post('/api/customer', this.getValue(), function (data) {
+                                        console.log(data);
+                                    })
+                                }
+                            }
+                        }
+                    }
+                },
+                "view": "bootstrap-edit"
+            });
+
+            ///script for creating tabulator goes here
             $("#customerTable").tabulator({
                 height: "311px",
                 layout: "fitColumns",
                 columns: [
-                    { title: "Name", field: "name" },
-                    { title: "Phone", field: "phone"},
-                    { title: "Email", field: "email"},
-                    { title: "Address", field: "Address"}
-                    /*  { title: "Group ID", field: "groupID" },
-                    { title: "Order", field: "order" },
-                  { title: "Followup Open", field: "followupopen" },
-                    { title: "Followup Status", field: "followupstatus" },
-                    { title: "Followup Action", field: "followupaction" },
-                    { title: "Due Date", field: "duedate" }*/
+                    { title: "ID", field: "id", editor: "input", visible: false },
+                    { title: "Firstname", field: "firstname", editor: "input" },
+                    { title: "Lastname", field: "lastname", editor: "input" },
+                    { title: "Address", field: "address" },
+                    { title: "Phone", field: "phone", editor: "input" },
+                    { title: "Email", field: "email", editor: "input" }
                 ],
-
                 cellEdited: function (cell) {
                     //This callback is called any time a cell is edidted
-                    var propertyToPersist;
                     console.log(Object.keys(cell.cell));
+                    console.log(cell.cell);
+                    console.log("Customer ID of the edited row" + cell.cell.row.data.id);
+                    console.log("Column being edited " + cell.cell.column.field)
                     console.log("Old Value: " + cell.cell.oldValue);
                     console.log("New Value: " + cell.cell.value);
 
-                    // call http action and method here                 
-                }
+                    // call http action and method here 
+                    $.ajax({
+                        method: 'PUT',
+                        data: JSON.stringify({
+                            columnName: cell.cell.column.field,
+                            columnValue: cell.cell.value
+                        }),
+                        url: "".concat("/api/customer?id=", cell.cell.row.data.id),
+                        contentType: "application/json; charset=utf-8"
+                    });
+                },
+                ajaxURL: "/api/customers", //ajax URL
+                ajaxConfig: "GET", //ajax HTTP request type
             });
+            ///$("#customerTable").tabulator("addRow", {});
+            //// $("#customerTable").tabulator("addRow", {});
+            //// $("#customerTable").tabulator("addRow", {});
+            $("#customerTable").tabulator("setData", "/api/customers?id=1");
         });
 
 
