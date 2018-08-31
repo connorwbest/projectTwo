@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     address: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     phone: {
       type: DataTypes.STRING,
@@ -18,7 +18,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
+    },
+    interested: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: true
     }
   });
   Customer.associate = function(models) {

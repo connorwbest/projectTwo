@@ -64,21 +64,45 @@
 
 <body>
     <div class="container">
-        <div class="row">
+        <nav class="navbar nabar-dark bg-dark">
+            <span class="navbar-brand mb-0 text-white"><strong>SALE REMINDER</strong></span>
+            <div class="navbar float-right">
+                <a class="nav-ulnk  text-white" href="../followup">TASK</a>
+                <a class="nav-link  text-white" href="../customers">CUSTOMER</a>
+            </div>
+        </nav>
+        <div class="row mt-2 mb-2">
             <div class="flex col-6">
-                <form class="form-inline">
-                    <select id="customerFilter" class="form-control">
-                        <option>Show 25 customers</option>
-                        <option>Show 50 customers</option>
-                    </select>
-                </form>
-                <div id="customerTable">
+                <div class="card text-dark bg-warning mb-3 new_card">
+                    <form id="customerForm" class="col-12"></form>
                 </div>
             </div>
-            <form id="customerForm" class="col-6"></form>
-        </div>
+
+            <div class="flex col-6">
+              <div class="card text-dark bg-warning mb-3 new_card">
+
+                <div class="row">
+                    <div class="col-12">
+                    <form class="form-inline float-right mt-2">
+                        <select id="customerFilter" class="form-control">
+                            <option>Show 25 customers</option>
+                            <option>Show 50 customers</option>
+                        </select>
+                    </form>
+                </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <div id="customerTable">
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
     </div>
+
     <script>
+
         $(document).ready(function () {
             $("#customerForm").alpaca({
                 "schema": {
@@ -87,32 +111,27 @@
                     "properties": {
                         "firstname": {
                             "type": "string",
-                            "required": true,
                             "title": "Firstname",
                             "minLength": 2
                         },
                         "lastname": {
                             "type": "string",
                             "title": "Lastname",
-                            "required": true,
                             "minLength": 2
                         },
                         "address": {
                             "type": "string",
                             "title": "Address",
-                            "required": true
                         },
                         "phone": {
                             "type": "string",
                             "title": "Phone",
                             "format": "phone",
-                            "required": true
                         },
                         "email": {
                             "type": "string",
                             "title": "Email",
                             "format": "email",
-                            "required": true
                         }
                     }
                 },
@@ -122,6 +141,54 @@
                              "action": "/api/customer",
                              "method": "post"
                         },
+                        "fields": {
+                          "firstname": {
+                            "validator": function(callback) {
+                                var value = this.getValue();
+                                if (value = "") {
+                                    callback({
+                                        "status": false,
+                                        "message": "Please enter Firstname"
+                                    });
+                                } else {
+                                    callback({
+                                        "status": true
+                                    });
+                                }
+                            }
+                          },
+                          "lastname": {
+                            "validator": function(callback) {
+                                var value = this.getValue();
+                                if (value = "") {
+                                    callback({
+                                        "status": false,
+                                        "message": "Please enter Lastname"
+                                    });
+                                } else {
+                                    callback({
+                                        "status": true
+                                    });
+                                }
+                            }
+                          },
+                          "phone": {
+                            "validator": function(callback) {
+                                var value = this.getValue();
+                                if (value = "") {
+                                    callback({
+                                        "status": false,
+                                        "message": "Please enter Firstname"
+                                    });
+                                } else {
+                                    callback({
+                                        "status": true
+                                    });
+                                }
+                            }
+                          }
+                        },
+                            
                         "buttons": {
                             "submit": {
                                 "type": "button",
