@@ -65,8 +65,9 @@ module.exports = function(app) {
   app.get("/api/customers", function(req, res) {
     switch (req.query.id) {
       case "1":
-        db.sequelize
-          .query("SELECT * FROM `All Added Customers`", {
+        db.Customer.findAll({
+          "limit": 10,
+          "query": "SELECT * FROM `All Added Customers`", {
             type: db.sequelize.QueryTypes.SELECT
           })
           .then(function(data) {
@@ -84,10 +85,10 @@ module.exports = function(app) {
         db.Customer.create(req.body).then(function(data){
           res.json(data);
         });
-      case "followup":
-        db.FollowUp.create(req.body).then(function(data){
-          res.json(data);
-        });
+      // case "followup":
+      //   db.FollowUp.create(req.body).then(function(data){
+      //     res.json(data);
+      //   });
       default:
     }
   });
