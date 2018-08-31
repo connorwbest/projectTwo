@@ -106,6 +106,7 @@ module.exports = function(app) {
         include: [db.Customer]
     }).then(function(dbFolUp) {
         res.json(dbFolUp);
+        console.log(dbFolUp);
     });
 });
 

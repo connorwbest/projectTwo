@@ -21,9 +21,10 @@ $(document).ready(function() {
             }
         })
           .then(function() {
-              getFolowUp();
           })
     };
+    getFolowUp();
+
     //InitializeCards handles appending all of follow up cards HTML inside
     //CardsContainer
     function initializeCards() {
