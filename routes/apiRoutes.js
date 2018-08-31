@@ -67,7 +67,7 @@ module.exports = function(app) {
       case "1":
         db.Customer.findAll({
           "limit": 10,
-          "query": "SELECT * FROM `All Added Customers`", {
+          "query": "SELECT * FROM `All Added Customers`", 
             type: db.sequelize.QueryTypes.SELECT
           })
           .then(function(data) {
