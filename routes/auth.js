@@ -1,16 +1,17 @@
-var db = require("../models");
 var authController = require("../controllers/authcontroller.js");
+
 
 module.exports = function(app, passport) {
   app.get("/signup", authController.signup);
   app.get("/", authController.signin);
-  app.get("/dashboard", isLoggedIn, authController.dashboard);
+  app.get("/followup", isLoggedIn, authController.dashboard);
+  app.get("/customers", isLoggedIn, authController.customers);
   app.get("/logout", authController.logout);
 
   app.post(
     "/signup",
     passport.authenticate("local-signup", {
-      successRedirect: "/dashboard",
+      successRedirect: "/followup",
 
       failureRedirect: "/signup"
     })
@@ -19,7 +20,7 @@ module.exports = function(app, passport) {
   app.post(
     "/signin",
     passport.authenticate("local-signin", {
-      successRedirect: "/dashboard",
+      successRedirect: "/followup",
 
       failureRedirect: "/"
     })
