@@ -2,134 +2,398 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="../public/styles/styles.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-  
-    <title>Sale Follow Up</title>
+    <link type="text/css" href="http://code.cloudcms.com/alpaca/1.5.24/bootstrap/alpaca.min.css" rel="stylesheet">
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+    <!-- moment -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <!-- bootstrap -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <!-- handlebars -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+    <!-- alpaca -->
+    <script type="text/javascript" src="https://code.cloudcms.com/alpaca/1.5.24/bootstrap/alpaca.min.js"></script>
+    <!-- jquery ui -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <!-- Required for jQuery UI DateTimePicker control -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
+    <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css"
+        rel="stylesheet">
+    <!-- Required for inputmask -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+
+    <!-- Beautify used by EditorField -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.7.5/beautify.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.7.5/beautify-css.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.7.5/beautify-html.min.js" type="text/javascript" charset="utf-8"></script>
+    <!-- typeahead.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.2.1/bloodhound.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.2.1/typeahead.bundle.min.js" type="text/javascript"></script>
+    <!-- ckeditor for the ckeditor field -->
+    <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js" type="text/javascript"></script>
+    <!-- bootstrap datetimepicker for date, time and datetime controls -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
+    <!-- bootstrap-multiselect for time field -->
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css">
+
+    <!-- jQuery Price Format for currency field -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-price-format/2.2.0/jquery.priceformat.min.js"></script>
+    <!-- START - Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-74723052-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- END - Google Analytics -->
+    <!-- pretty print -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.css">
 </head>
 
 <body>
+    <!--Custom Script-->
 
     <div class="container">
         <nav class="navbar nabar-dark bg-dark">
             <span class="navbar-brand mb-0 text-white"><strong>SALE REMINDER</strong></span>
             <div class="navbar float-right">
-                <a class="nav-ulnk  text-white" href="../followup">TASK</a>
-                <a class="nav-link  text-white" href="../customers">CUSTOMER</a>
-                <a class="nav-ulnk  text-white" href="../logout">LOGOUT</a>
+                <a class="nav-ulnk  text-white" href="#">TASK</a>
+                <a class="nav-link  text-white" href="../view/customer.html">CUSTOMER</a>
             </div>
         </nav>
-    
         <div class="row">
-    
             <!-- Showing Today Date here -->
             <div class="col-md-6">
-                <div class="card border-warning mb-3 mt-2">
-                    <!--add function to get Date here------------------------------------>
-                    <div class="card-header bg-warning text-white">
-                        <h5>
-                            <span class="float-left">Sale Task</span>
-                            <!--Action: Post current day-->
-                            <span class="float-right" id="today"></span>
-                        </h5>
-                    </div>
-                    <!------------------------------------------------------------------->
-                    <div class="card-body" id="card_container">
-    
-                        <!--Start showing all follow up cards-->
-                        <div class="card text-white bg-warning mb-3 new_card">
-                            <div class="card-header bg-transparent border-warning">
-                                <span class="float-left"><strong>#123: Customer</strong></span>
-                                <span class="float-right">Business Name</span>
-                            </div>
-                            <div class="card-body">
-                                <h6 class="card-title action">
-                                    Action: Call him back
-                                </h6>
-                                <p class="card-text status">
-                                    Recent Status: Customer is Busy
-                                </p>
-                                <p class="card-text memo">
-                                    Memo: Call this customer after 3pm
-                                </p>
-                                <p class="card-text contact">
-                                    <span class="business">Business Name</span> || 
-                                    Work: <span class="work-num">(123) 456-789</span> || 
-                                    Mobile: <span class="mobile-num">(456) 789-123</span>
-                                </p>
-                                <button type="submit" class="btn btn-outline-dark float-left">Delete</button>
-                                <button type="submit" class="btn btn-outline-dark float-right">Complete</button>
-                                <button type="submit" class="btn btn-dark float-right mx-3 follow-up">Follow Up</button>
-                            </div>
-    
-                        </div>
-                    </div>
-                    </div>
-                    </div>
-
-            <!--End showing all follow up cards-->
-    
-    
-            <!--New Follow Up-->
+                <div id="followupForm"></div>
+            </div>
             <div class="col-md-6">
-                <div class="card  border-warning mb-3 mt-2">
-                    <div class="card-header bg-warning text-white">
-                        <!--Action: Post customer id here-->
-                        <span id="custId-right">#123</span> :
-                        <!--Action: Post customer name here--> 
-                        <span>Customer Name</span>
-                    </div>
-                        <div class="card-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="recent-status">Status</label>
-                                    <select class="custom-select" id="recent-status">
-                                        <option selected>Choose...</option>
-                                        <option value="1">Customer Busy</option>
-                                        <option value="2">Customer will visit Store</option>
-                                        <option value="3">Decided to purchase</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Action">Action</label>
-                                    <select class="custom-select" id="new-action">
-                                        <option selected>Choose...</option>
-                                        <option value="1">Call back</option>
-                                        <option value="2">Confirm an appointment</option>
-                                        <option value="3">Collect Balance</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="due-date">Due Date</label>
-                                    <input type="date"  class="form-control" id="due-date">
-                                </div>
-                                <div class="form-group">
-                                    <label for="memo">Memo</label>
-                                    <textarea type="text"  class="form-control" id="memo"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-warning float-right" id="add-follow-up">Add New Follow</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-    
+                <div id="followupTable"></div>
+            </div>
+        </div>
     </div>
-    
-    <!--Custom Script-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
-    <script src="./public/js/followup.js"></script>
     <script>
-        //Showing current date
-            var d = new Date();
-            var curDate = moment(d).format("MMM Do YY");
-            $("#today").text(curDate);
+
+        var dateEditor = function (cell, onRendered, success, cancel) {
+            //cell - the cell component for the editable cell
+            //onRendered - function to call when the editor has been rendered
+            //success - function to call to pass the succesfully updated value to Tabulator
+            //cancel - function to call to abort the edit and return to a normal cell
+
+            //create and style editor
+            var editor = $("<input type='date'></input>");
+            editor.css({
+                "padding": "3px",
+                "width": "100%",
+                "box-sizing": "border-box",
+            });
+
+            //Set value of editor to the current value of the cell
+            editor.val(moment(cell.getValue(), "YYYY-MM-DD").format("YYYY-MM-DD"));
+
+            //set focus on the select box when the editor is selected (timeout allows for editor to be added to DOM)
+            onRendered(function () {
+                editor.focus();
+                editor.css("height", "100%");
+            });
+
+            //when the value has been set, trigger the cell to update
+            editor.on("change blur", function (e) {
+                success(moment(editor.val(), "YYYY-MM-DD").format("YYYY-MM-DD"));
+            });
+
+            //return the editor element
+            return editor;
+        };
+
+
+
     </script>
-    </body>
-    
+    <script>
+        var now = new Date();
+        var actionMap = {
+            "1": [{
+                "value": "Call back",
+                "text": "Call back"
+            }],
+            "2": [{
+                "value": "Call back",
+                "text": "Call back"
+            }],
+            "3": [{
+                "value": "Follow-Up",
+                "text": "Follow-Up"
+            },
+            {
+                "value": "Change lead status to Dropped",
+                "text": "Change lead status to Dropped"
+            }],
+            "4": [{
+                "value": "Follow-Up",
+                "text": "Follow-Up"
+            },
+            {
+                "value": "Change lead status to Dropped",
+                "text": "Change lead status to Dropped"
+            }],
+            "5": [{
+                "value": "Follow-Up",
+                "text": "Follow-Up"
+            },
+            {
+                "value": "Change lead status to Dropped",
+                "text": "Change lead status to Dropped"
+            }],
+            "6": [{
+                "value": "Change lead status to Potential",
+                "text": "Change lead status to Potential"
+            }],
+            "7": [{
+                "value": "Request shipping Date",
+                "text": "Request shipping Date"
+            },
+            {
+                "value": "Waiting to Ship",
+                "text": "Waiting to Ship"
+            },
+            {
+                "value": "Check Inventory",
+                "text": "Check Inventory"
+            }],
+            "8": [{
+                "value": "No Action needed",
+                "text": "No Action needed"
+            }],
+            "9": [{
+                "value": "No Action needed",
+                "text": "No Action needed"
+            }]
+        };
+        var dataf = function (callback) {
+            var value = this.observable("/status").get();
+            callback(actionMap[value]);
+        };
+        $(document).ready(function () {
+            $("#followupTable").tabulator({
+                pagination: "local",
+                paginationSize: 6,
+                height: "450px",
+                layout: "fitDataFill",
+                columns: [
+                    { title: "Followup ID", field: "id", visible: false },
+                    { title: "Full Name", field: "fullname", sorter: "string", width: 200, editor: false, headerFilter: "input" },
+                    { title: "Followup Status", field: "name", sorter: "string", width: 200, editor: false, headerFilter: "input" },
+                    { title: "Followup Action", field: "action", sorter: "string", editor: true, headerFilter: "input" },
+                    { title: "Due Date", field: "duedate", sorter: "date", editor: dateEditor },
+                    { title: "Memo", field: "memo", align: "center", width: 100, editor: true },
+                    { title: "Open Followup", field:"open", editor:"tick", formatter:"tickCross"}
+                ],
+                cellEdited: function (cell) {
+                    //This callback is called any time a cell is edidted
+                    // console.log(Object.keys(cell.cell));
+                    // console.log(cell.cell);
+                    // console.log("Followup ID of the edited row " + cell.cell.row.data.id);
+                    // console.log("Column being edited " + cell.cell.column.field)
+                    // console.log("Old Value: " + cell.cell.oldValue);
+                    // console.log("New Value: " + cell.cell.value);
+
+                    // call http action and method here 
+                    $.ajax({
+                        method: 'PUT',
+                        data: JSON.stringify({
+                            columnName: cell.cell.column.field,
+                            columnValue: cell.cell.value
+                        }),
+                        url: "".concat("/api/followup?id=", cell.cell.row.data.id),
+                        contentType: "application/json; charset=utf-8"
+                    });
+                },
+                ajaxURL: "/api/followups?id=1", //ajax URL
+                ajaxConfig: "GET", //ajax HTTP request type
+            });
+
+            $("#followupForm").alpaca({
+                "schema": {
+                    "title": "New Followup",
+                    "type": "object",
+                    "properties": {
+                        "customer": {
+                            "type": "string",
+                            "title": "Customer"
+                        },
+                        "status": {
+                            "type": "string",
+                            "title": "Followup Status"
+                        },
+                        "action": {
+                            "type": "string",
+                            "title": "Followup Action"
+                        },
+                        "duedate": {
+                            "type": "string",
+                            "title": "Due Date",
+                            "format": "date"
+                        },
+                        "memo": {
+                            "type": "string",
+                            "title": "Memo"
+                        }
+                    }
+                },
+                "options": {
+                    "form": {
+                        "attributes": {
+                            "action": "/api/followup",
+                            "method": "post"
+                        },
+                        "buttons": {
+                            "submit": {
+                                "title": "Submit",
+                                "type": "button",
+                                "click": function () {
+                                    var list = [{"customer":"CustomerId"},{"status":"FollowupStatusTypeId"},
+                                    {"action":"action"},{"duedate":"duedate"},{"memo":"memo"}];
+                                    var newfollowup = {
+                                        // customerid: parseInt($("#customer").val()),
+                                        // followupstatusid: parseInt($("#status").val()),
+                                        // action: $("#action").val(),
+                                        // duedate: $("#duedate").val(),
+                                        // memo: $("#memo").val()
+                                    }
+                                    list.forEach(
+                                        function(value,number,array){
+                                            var key = Object.keys(value).toString();
+                                            if ($("#"+key).val() !== "") {
+                                                newfollowup[value[key]] = isNaN(parseInt($("#"+key).val())) ? $("#"+key).val() : parseInt($("#"+key).val()); 
+                                            }
+                                        }
+                                    )
+                                    
+                                    console.log(newfollowup);
+                                    $.post('/api/followup', newfollowup, function (data2) {
+                                        $.getJSON('/api/followups?id=1',function(data){
+                                            $("#followupTable").tabulator("setData",data);     
+                                        });
+                                        
+                                        $("#followupForm").alpaca("get").childrenByPropertyId["customer"].setValue("");
+                                        $("#followupForm").alpaca("get").childrenByPropertyId["status"].setValue("");
+                                        $("#followupForm").alpaca("get").childrenByPropertyId["action"].setValue("");
+                                        $("#followupForm").alpaca("get").childrenByPropertyId["duedate"].setValue("");
+                                        $("#followupForm").alpaca("get").childrenByPropertyId["memo"].setValue("");
+                                    });
+                                }
+                            }
+                        }
+                    },
+                    "fields": {
+                        "customer": {
+                            "id": "customer",
+                            "hideNone": true,
+                            "dataSource": function (cb) {
+                                $.getJSON("/api/cb/customers", function (data) {
+                                    console.log(data);
+                                    cb(data);
+                                })
+                            },
+                            "type": "select"
+                        }
+                        ,
+                        "status": {
+                            "hideNone": true,
+                            "dataSource": [
+                                {
+                                    "value": 1,
+                                    "text": "Customer is Busy"
+                                },
+                                {
+                                    "value": 2,
+                                    "text": "Call but no answer"
+                                },
+                                {
+                                    "value": 3,
+                                    "text": "Need to discuss"
+                                },
+                                {
+                                    "value": 4,
+                                    "text": "Already purchased"
+                                },
+                                {
+                                    "value": 5,
+                                    "text": "No longer Need"
+                                },
+                                {
+                                    "value": 6,
+                                    "text": "Not purchase now"
+                                },
+                                {
+                                    "value": 7,
+                                    "text": "Follow up Sales Order"
+                                },
+                                {
+                                    "value": 8,
+                                    "text": "Shipped"
+                                },
+                                {
+                                    "value": 9,
+                                    "text": "Order Completed"
+                                }
+                            ],
+                            "id": "status",
+                            "type": "select"
+                        },
+                        "action": {
+                            "hideNone": true,
+                            "dataSource": dataf,
+                            "type": "select",
+                            "id": "action"
+                        },
+                        "duedate": {
+                            "type": "date",
+                            "picker": {
+                                "minDate": new Date().setDate(now.getDate())
+                            },
+                            "manualEntry": true,
+                            "id": "duedate"
+                        },
+                        "memo": {
+                            "type": "textarea",
+                            "id": "memo"
+                        }
+                    }
+                },
+                "postRender": function (control) {
+                    var status = control.childrenByPropertyId["status"];
+                    var action = control.childrenByPropertyId["action"];
+                    console.log(action);
+                    $("#action").append(new Option("Call back", "Call back", true, true));
+                    status.on("change", function () {
+                        action.refresh();
+                    });
+                }
+            });
+        });
+        window.onload = function () {
+            $("#customer").editableSelect();
+        }
+    </script>
+    <!-- <script src="https://rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script> -->
+    <script src="./js/jquery-editable-select.js"></script>
+    <!-- <link href="https://rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css" rel="stylesheet"> -->
+    <link href="./styles/jquery-editable-select.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.5.3/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.5.3/js/tabulator.min.js"></script>
+</body>
