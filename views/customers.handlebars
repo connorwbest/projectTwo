@@ -62,7 +62,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.css">
 </head>
 
-<body>
+<body id="body">
     <div class="container">
         <nav class="navbar nabar-dark bg-dark">
             <span class="navbar-brand mb-0 text-white"><strong>SALE REMINDER</strong></span>
@@ -103,7 +103,7 @@
         </div>
         <script id="placesFunctions">
         var address;
-        var scripttag = `<script id= "places" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMehvoOLcod3Fi1YS6c-inhIu1fZXVAy0&libraries=places" async defer><\/script>`
+        var scripttag = `<script id= "places" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMehvoOLcod3Fi1YS6c-inhIu1fZXVAy0&libraries=places&callback=initAutocomplete" async defer><\/script>`
         var placeSearch, autocomplete;
         var componentForm = {
             street_number: "short_name",
